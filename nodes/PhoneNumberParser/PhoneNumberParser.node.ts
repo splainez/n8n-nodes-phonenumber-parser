@@ -101,10 +101,6 @@ export class PhoneNumberParser implements INodeType {
 			newItem.json.countryCallingCode = phoneNumber?.countryCallingCode ?? '';
 			newItem.json.nationalNumber = phoneNumber?.nationalNumber ?? '';
 
-			// NATIONAL — Example: "(213) 373-4253"
-			// INTERNATIONAL — Example: "+1 213 373 4253"
-			// E.164 — Example: "+12133734253"
-			// RFC3966 (the phone number URI) — Example: "tel:+12133734253;ext=123"
 			newItem.json.formatNational = phoneNumber?.format('NATIONAL') ?? '';
 			newItem.json.formatInternational = phoneNumber?.format('INTERNATIONAL') ?? '';
 			newItem.json.formatE164 = phoneNumber?.format('E.164') ?? '';
@@ -115,15 +111,6 @@ export class PhoneNumberParser implements INodeType {
 			newItem.json.nonGeographic = phoneNumber?.isNonGeographic() ?? false;
 
 			newItem.json.type = phoneNumber?.getType() ?? '';
-
-			// PhoneNumber class instance has the following properties:
-
-			// number: string — The phone number in E.164 format. Example: "+12133734253".
-			// countryCallingCode: string — The country calling code. Example: "1".
-			// nationalNumber: string — The national (significant) number. Example: "2133734253".
-			// country: string? — The country code. Example: "US". Will be undefined when no country could be derived from the phone number. For example, when several countries have the same countryCallingCode and the nationalNumber doesn't look like it belongs to any of them. Or when a number belongs to a non-geographic numbering plan.
-			// ext: string? — The phone number extension, if any. Example: "1234".
-			// carrierCode: string? — The "carrier code", if any. Example: "15". "Carrier codes" are only used in Colombia and Brazil and only when dialing within those countries from a mobile phone to a fixed line number.
 
 			returnData.push(newItem);
 		}

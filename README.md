@@ -1,47 +1,41 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-phonenumber-parser
 
-# n8n-nodes-starter
+[![version](https://img.shields.io/npm/v/@splainez/n8n-nodes-phonenumber-parser.svg)](https://www.npmjs.org/package/@splainez/n8n-nodes-phonenumber-parser)
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](n8n.io). It includes the node linter and other dependencies.
+## Description
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
-
-## Prerequisites
-
-You need the following installed on your development machine:
-
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 16. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-	```
-	npm install n8n -g
-	```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+The `PhoneNumberParser` node is a useful tool for working with phone numbers in your n8n workflows. This node uses the `libphonenumber-js` library to format phone numbers into human-readable formats and extract useful information from them, such as the country code, area code, and phone number itself.
 
 
-## Using this starter
+Alternatively, you can clone the repository from Github and build the package yourself.
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+## Installation
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-    ```
-    git clone https://github.com/<your organization>/<your-repo-name>.git
-    ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
-## More information
+## Usage
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+To use the `PhoneNumberParser` node in your n8n workflows, simply drag and drop the node from the node palette onto your workflow canvas. Then, connect the output of any preceding nodes to the input of the `PhoneNumberParser` node.
+
+The `PhoneNumberParser` node has a single input parameter, the phone number to be formatted. This should be a string containing only digits. Once the node receives the phone number, it will automatically format it into a human-readable format and extract useful information from it, such as the country code, area code, and phone number itself. The formatted phone number will be output as a JSON object containing these different fields.
+
+This node parses a phone number using the libphonenumber-js library and returns its information in JSON format. The following information is included in the output:
+
+* `country`: The country code of the phone number.
+* `countryCallingCode`: The country calling code of the phone number.
+* `nationalNumber`: The national (significant) number of the phone number.
+* `formatNational`: The phone number formatted in the national format.
+* `formatInternational`: The phone number formatted in the international format.
+* `formatE164`: The phone number formatted in the E.164 format.
+* `formatRFC3966`: The phone number formatted in the RFC3966 format.
+* `possible`: Whether the phone number is possible (i.e., it is a valid phone number but not necessarily assigned to a specific user or location).
+* `valid`: Whether the phone number is valid (i.e., it is a valid phone number and is assigned to a specific user or location).
+* `nonGeographic`: Whether the phone number is non-geographic (i.e., it is not assigned to a specific geographic location).
+* `type`: The type of the phone number (e.g., FIXED_LINE_OR_MOBILE, MOBILE, FIXED_LINE, TOLL_FREE, etc.).
+
 
 ## License
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+This project uses the `libphonenumber-js` library, which is licensed under the MIT License. See the `libphonenumber-js/LICENSE` file for more details.
