@@ -4,6 +4,7 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
+	NodeConnectionType,
 } from 'n8n-workflow';
 import parsePhoneNumber, {
 	CountryCode,
@@ -22,8 +23,8 @@ export class PhoneNumberParser implements INodeType {
 		defaults: {
 			name: 'Phone Number Parser',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
 		credentials: [],
 		properties: [
 			{
