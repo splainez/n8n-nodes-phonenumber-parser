@@ -4,7 +4,7 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	NodeConnectionType,
+	NodeConnectionTypes,
 } from 'n8n-workflow';
 import parsePhoneNumber, {
 	CountryCode,
@@ -16,15 +16,15 @@ export class PhoneNumberParser implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Phone Number Parser',
 		name: 'phoneNumberParser',
-		icon: 'file:phonenumbeparser.svg',
+		icon: { light: 'file:icons/phonenumbeparser.svg', dark: 'file:icons/phonenumbeparser.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		description: 'Parse a phone number and return its information',
 		defaults: {
 			name: 'Phone Number Parser',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [],
 		properties: [
 			{
@@ -58,6 +58,7 @@ export class PhoneNumberParser implements INodeType {
 				placeholder: '+1 555 555 5555',
 			},
 		],
+		usableAsTool: true,
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
