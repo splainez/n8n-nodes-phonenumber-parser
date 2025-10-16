@@ -10,24 +10,32 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 16
+          node-version: 22
       - run: npm ci
+      - run: npm run build
+      - run: npm run lint
       - run: npm run prepublishOnly
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 16
+          node-version: 22
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: npm publish --access=public
+      - run: npm publish --provenance --access=public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
