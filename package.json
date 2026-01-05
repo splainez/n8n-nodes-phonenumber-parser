@@ -40,13 +40,13 @@
   },
   "devDependencies": {
     "@n8n/node-cli": "*",
-    "eslint": "9.37.0",
-    "prettier": "3.6.2",
-    "release-it": "^19.0.5",
+    "eslint": "9.39.2",
+    "prettier": "3.7.4",
+    "release-it": "^19.2.2",
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "libphonenumber-js": "^1.12.24"
+    "libphonenumber-js": "^1.12.33"
   },
   "peerDependencies": {
     "n8n-workflow": "*"
